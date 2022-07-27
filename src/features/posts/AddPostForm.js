@@ -1,25 +1,32 @@
 import React, { useState } from 'react'
-import { useDispatch } from 'react-redux/es/exports';
-import { nanoid } from '@reduxjs/toolkit';
+import { useDispatch, useSelector } from 'react-redux/es/exports';
 import { postAdded } from './postSlice';
 
 export const AddPostForm = () => {
   const [title, setTitle] = useState('')
   const [content, setContent] = useState('')
+  const [userId, setUserId] = useState('')
 
   const dispatch = useDispatch()
+  const users = useSelector(state => state.users)
 
   const onTitleChanged = e => setTitle(e.target.value)
   const onContentChanged = e => setContent(e.target.value)
+  const onAuthorChanged = e => setUserId(e.target.value)
+
+  const canSave = Boolean(title) && Boolean(content) && Boolean(userId)
+
+  const usersOptions = users.map(user => (
+    <option key={user.id} value={user.id}>
+      {user.name}
+    </option>
+  ))
 
   const onSavePostClicked = () => {
     if (title && content) {
-        dispatch(
-            postAdded({id: nanoid(), title,content})
-        )
-
-        setTitle('')
-        setContent('')
+      dispatch(postAdded(title, content, userId))
+      setTitle('')
+      setContent('')
     }
   }
 
@@ -34,15 +41,21 @@ export const AddPostForm = () => {
           name="postTitle"
           value={title}
           onChange={onTitleChanged}
+          className="formStyle"
         />
+         <label htmlFor="postAuthor">Author:</label>
+        <select id="postAuthor" value={userId} onChange={onAuthorChanged} className="formStyle">
+          <option value=""></option>
+          {usersOptions}
+        </select>
         <label htmlFor="postContent">Content:</label>
         <textarea
           id="postContent"
           name="postContent"
           value={content}
-          onChange={onContentChanged}
+          onChange={onContentChanged} className="formStyle"
         />
-        <button type="button" onClick={onSavePostClicked}>Save Post</button>
+        <button type="button" onClick={onSavePostClicked} disabled={!canSave}>Save Post</button>
       </form>
     </section>
   )

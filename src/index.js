@@ -5,9 +5,18 @@ import { store } from './app/store';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import './index.css';
+import { fetchUsers } from './features/users/userSlice';
+
+
 
 const container = document.getElementById('root');
 const root = createRoot(container);
+
+if (process.env.NODE_ENV === 'development') {
+  const { worker } = require('./mocks/browser')
+  worker.start()
+  store.dispatch(fetchUsers())
+}
 
 root.render(
   <React.StrictMode>
