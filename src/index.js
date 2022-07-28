@@ -5,7 +5,7 @@ import { store } from './app/store';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import './index.css';
-import { fetchUsers } from './features/users/userSlice';
+import { fetchUsers } from './features/users/usersSlice';
 import { fetchPosts } from './features/posts/postSlice';
 
 
