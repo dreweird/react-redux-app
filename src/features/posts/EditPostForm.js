@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate  } from 'react-router-dom'
 
-import { postUpdated, selectPostById } from './postSlice';
+import { postUpdated, selectPostById } from './postsSlice';
 import { useParams } from "react-router-dom";
 
 export const EditPostForm = () => {

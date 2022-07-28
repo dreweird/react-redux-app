@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector  } from 'react-redux'
-import { Link, Outlet } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import {
     fetchNotifications,
     selectAllNotifications
@@ -31,7 +31,7 @@ export const Navbar = () => {
                     <h1>Redux Essentials Example</h1>
                     <div className="navContent">
                         <div className="navLinks">
-                        <Link to="/posts">Posts</Link>
+                        <Link to="/">Posts</Link>
                         <Link to="/users">Users</Link>
                         <Link to="/notifications">Notifications {unreadNotificationsBadge}</Link>
                         </div>
@@ -42,7 +42,7 @@ export const Navbar = () => {
                 </section>
             </nav>
             
-            <Outlet />
+         
         </>
      
         

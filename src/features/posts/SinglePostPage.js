@@ -3,8 +3,8 @@ import { useSelector } from "react-redux/es/exports";
 import { useParams } from "react-router-dom";
 import { Link } from 'react-router-dom'
 import { PostAuthor } from "./PostAuthor";
-import { selectPostById } from './postSlice'
-import { ReactionButtons } from './ReactionButton'
+import { selectPostById } from './postsSlice'
+import { ReactionButtons } from './ReactionButtons'
 import { TimeAgo } from "./TimeAgo";
 
 
