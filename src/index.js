@@ -6,6 +6,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import './index.css';
 import { fetchUsers } from './features/users/userSlice';
+import { fetchPosts } from './features/posts/postSlice';
 
 
 
@@ -16,6 +17,7 @@ if (process.env.NODE_ENV === 'development') {
   const { worker } = require('./mocks/browser')
   worker.start()
   store.dispatch(fetchUsers())
+  store.dispatch(fetchPosts())
 }
 
 root.render(

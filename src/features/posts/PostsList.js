@@ -1,5 +1,5 @@
-import React, {useEffect} from "react";
-import { useSelector, useDispatch } from "react-redux";
+import React from "react";
+import { useSelector } from "react-redux";
 import { AddPostForm } from "./AddPostForm";
 import { Link } from "react-router-dom";
 import { PostAuthor } from "./PostAuthor";
@@ -7,7 +7,7 @@ import { TimeAgo } from "./TimeAgo";
 import { ReactionButtons } from "./ReactionButton";
 
 import { Spinner } from '../../components/Spinner'
-import { selectAllPosts, fetchPosts } from './postSlice'
+import { selectAllPosts } from './postSlice'
 
 const PostExcerpt = ({ post }) => {
     return (
@@ -28,16 +28,16 @@ const PostExcerpt = ({ post }) => {
   }
 
 export const PostsList = () => {
-    const dispatch = useDispatch()
+    // const dispatch = useDispatch()
     const posts = useSelector(selectAllPosts)
     const postStatus = useSelector(state => state.posts.status)
     const error = useSelector(state => state.posts.error)
 
-    useEffect(() => {
-      if (postStatus === 'idle') {
-        dispatch(fetchPosts())
-      }
-    }, [postStatus, dispatch])
+    // useEffect(() => {
+    //   if (postStatus === 'idle') {
+    //     dispatch(fetchPosts())
+    //   }
+    // }, [postStatus, dispatch])
 
       let content
 
